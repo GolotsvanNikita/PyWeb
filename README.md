@@ -6,3 +6,13 @@
 
 # dz_3
 <img width="419" height="198" alt="image" src="https://github.com/user-attachments/assets/a8447f5f-1633-4c46-ab78-0eab937f9ba3" />
+
+# dz_4
+## Home Page
+<img width="418" height="300" alt="image" src="https://github.com/user-attachments/assets/14cc342b-3e59-4cb3-8379-8dacff7427a6" />
+
+## About Page
+<img width="355" height="156" alt="image" src="https://github.com/user-attachments/assets/98762443-47a9-43fb-93f4-7ed7dbc4b4d4" />
+
+## Privacy Page
+<img width="328" height="147" alt="image" src="https://github.com/user-attachments/assets/0b7d01fc-2a78-4942-9517-e30c7f46ac67" />
