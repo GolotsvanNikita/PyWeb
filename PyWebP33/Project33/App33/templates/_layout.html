@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App33 - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/bootstrap-icons.min.css' %}" />
+    <link rel="icon" href="{% static 'img/python.png' %}" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'img/python.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    Project-33
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="/clonning" class="nav-link" title="Інструкція з клонування проєкту з Гітхаба"><i class="bi bi-copy me-3" style="font-size: 1.5rem;"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="/layouting" class="nav-link" title="Шаблонізація - створення єдиного оточення"><i class="bi bi-grid-1x2 me-3" style="font-size: 1.5rem;"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="/statics" class="nav-link" title="Підключення статичних файлів-ресурсів"><i class="bi bi-file-post me-3" style="font-size: 1.5rem;"></i></a>
+                        </li>
+
+                        <li>
+                            <a href="/lottery" class="nav-link">Lottery</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+    {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-body-tertiary border-top">
+        &copy; 2025, IT STEP Academy
+    </footer>
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/site.js' %}"></script>
+</body>
+</html>    

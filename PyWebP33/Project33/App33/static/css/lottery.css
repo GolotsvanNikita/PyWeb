@@ -1,0 +1,19 @@
+.cont
+{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.ball
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+}

@@ -1,0 +1,14 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Lottery{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/lottery.css' %}" />
+
+<div class="cont">
+    {% for num in rand %}
+    <div class="ball">{{num}}</div>
+    {% endfor %}
+</div>
+{% endblock %}

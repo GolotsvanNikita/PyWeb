@@ -1,0 +1,10 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Static{% endblock %}
+
+{% block content %}
+
+<h1 class="display-4">Statics</h1>
+<img src="{% static 'img/python.png' %}" alt="img" width="100px">
+{% endblock %}

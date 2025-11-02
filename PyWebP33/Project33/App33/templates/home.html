@@ -1,0 +1,22 @@
+{% extends "_layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="display-4">{{page_header}}</h1>
+
+<h2 class="display-5">Зміст</h2>
+
+<div class="list-group">
+    <a class="list-group-item list-group-item-action fs-5" href="/clonning"><i class="bi bi-copy"></i> Інструкція з клонування проєкту з Гітхаба</a>
+    <a class="list-group-item list-group-item-action fs-5" href="/layouting"><i class="bi bi-grid-1x2"></i> Шаблонізація - створення єдиного оточення</a>
+    <a class="list-group-item list-group-item-action fs-5" href="/statics"><i class="bi bi-file-post"></i> Підключення статичних файлів-ресурсів</a>
+    <a class="list-group-item list-group-item-action fs-5" href="/lottery">Lottery</a>
+</div>
+
+<p>
+    З контексту передано дані: x = {{x}}
+</p>
+<i style="font-weight:700;">Сторінка завантажена о </i>
+
+{% endblock %}
