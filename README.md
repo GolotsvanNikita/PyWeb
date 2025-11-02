@@ -16,3 +16,6 @@
 
 ## Privacy Page
 <img width="328" height="147" alt="image" src="https://github.com/user-attachments/assets/0b7d01fc-2a78-4942-9517-e30c7f46ac67" />
+
+# dz_5
+https://github.com/user-attachments/assets/ffa87fb8-7869-4e8c-8309-3908f7c996e2
