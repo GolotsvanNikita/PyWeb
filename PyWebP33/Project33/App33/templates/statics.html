@@ -4,9 +4,37 @@
 {% block title %}Static{% endblock %}
 
 {% block content %}
+<div class="container my-5">
+    <h1 class="display-4 mb-4">Statics</h1>
 
-<h1 class="display-4">Statics</h1>
-<img src="{% static 'img/python.png' %}" alt="img" width="100px">
+    <div class="mb-4">
+        <h3 class="display-6">Video</h3>
+        <video width="640" height="360" controls>
+            <source src="{% static 'video/vd.mp4' %}">
+        </video>
+    </div>
+
+    <div class="mb-4">
+        <h3 class="display-6">Audio</h3>
+        <audio controls>
+            <source src="{% static 'audio/moonlight.mp3' %}" type="audio/mp3">
+        </audio>
+    </div>
+
+    <div class="mb-4">
+        <h3 class="display-6">Image</h3>
+        <img src="{% static 'img/python.png' %}" alt="python" width="100">
+    </div>
+
+    <div class="mb-4">
+        <h3 class="display-6">Documentation</h3>
+        <a href="{% static 'document/Python.pdf' %}" download class="btn btn-primary" id="click" data-sound="{% static 'sound/bem.wav' %}">
+            <i class="bi bi-download"></i> Download PDF
+        </a>
+    </div>
+</div>
+
+<script src="{% static 'js/site.js' %}"></script>
 {% endblock %}
 
 {% block footer %}
