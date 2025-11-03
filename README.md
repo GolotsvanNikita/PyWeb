@@ -19,3 +19,7 @@
 
 # dz_5
 https://github.com/user-attachments/assets/ffa87fb8-7869-4e8c-8309-3908f7c996e2
+
+# dz_6
+https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
+
