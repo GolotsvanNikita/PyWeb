@@ -8,3 +8,7 @@
 <h1 class="display-4">Statics</h1>
 <img src="{% static 'img/python.png' %}" alt="img" width="100px">
 {% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

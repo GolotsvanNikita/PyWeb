@@ -2,6 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
 import random
+from datetime import datetime
+
+from Project33.settings import DEBUG
+
 
 # технічно представлення - це функції, які приймають
 # запит (request) та формують відповідь (response)
@@ -15,24 +19,43 @@ def home(request) :
         'x': 10,
         'y': 20,
         'page_title': 'Домашня',
-        'page_header': 'Розробка вебдодатків з використанням Python'
+        'page_header': 'Розробка вебдодатків з використанням Python',
+        'time': datetime.now().strftime('%H:%M:%S')
     }
     return HttpResponse( template.render(context, request) )
 
 
 def clonning(request) :
     template = loader.get_template('clonning.html')
-    return HttpResponse( template.render() )
+
+    context =\
+    {
+        'time': datetime.now().strftime('%H:%M:%S')
+    }
+
+    return HttpResponse( template.render(context, request) )
 
 
 def layouting(request) :
     template = loader.get_template('layouting.html')
-    return HttpResponse( template.render() )
+
+    context =\
+    {
+        'time': datetime.now().strftime('%H:%M:%S')
+    }
+
+    return HttpResponse( template.render(context, request) )
 
 
 def statics(request):
     template = loader.get_template('statics.html')
-    return HttpResponse(template.render())
+
+    context =\
+    {
+        'time': datetime.now().strftime('%H:%M:%S')
+    }
+
+    return HttpResponse(template.render(context, request))
 
 
 def lottery(request):
@@ -42,7 +65,8 @@ def lottery(request):
 
     context =\
     {
-        'rand': random_numbers
+        'rand': random_numbers,
+        'time': datetime.now().strftime('%H:%M:%S')
     }
 
     return HttpResponse(template.render(context, request))
