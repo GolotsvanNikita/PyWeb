@@ -36,11 +36,20 @@
                         </li>
 
                         <li>
+                            <a href="/params" class="nav-link" title="Transfer params in request"><i class="bi bi-arrow-down-up me-3" style="font-size: 1.5rem;"></i></a>
+                        </li>
+
+                        <li>
                             <a href="/lottery" class="nav-link"><i class="bi bi-ticket-perforated me-3" style="font-size: 1.5rem;"></i></a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <form class="d-flex" role="search" method="get" action="/params">
+                        <input
+                                class="form-control me-2"
+                                type="search" placeholder="Search"
+                                aria-label="Search"
+                                name="q"
+                        />
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>

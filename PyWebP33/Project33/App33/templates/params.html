@@ -1,0 +1,41 @@
+{% extends "_layout.html" %}
+
+{% block title %}Clonning{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Transfer params in request</h1>
+
+<pre>
+POST /params HTTP/1.1
+Host: localhost
+Connection: close
+Content-Type: application/json
+
+{"Hello": "World!"}
+</pre>
+
+<a href="?x=10&y=20&user=admin">link</a>
+{{params}}
+<br/>
+<span>Data about user: {{user}}</span></br>
+<span>In the search response transfer: {{q}}</span>
+<h3>If page address https://localhost/params/query, than:</h3>
+
+<table class="table">
+    <thead>
+       <tr><th>Abbreviated address</th><th>Full address</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>href="home"</td><td>https://localhost/params/home</td></tr>
+        <tr><td>href="/home"</td><td>https://localhost/home</td></tr>
+        <tr><td>href="//home"</td><td>https://home</td></tr>
+        <tr><td>href="?home"</td><td>https://localhost/params/query?home</td></tr>
+        <tr><td>href="#home"</td><td>https://localhost/params/query#home (without direction)</td></tr>
+    </tbody>
+</table>
+<h3> (<a href="?about=GET">GET</a> {{about_get}}), (<a href="?about=POST">POST</a> {{about_post}})</h3>
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

@@ -58,6 +58,24 @@ def statics(request):
     return HttpResponse(template.render(context, request))
 
 
+def params(request):
+    template = loader.get_template('params.html')
+
+    context = \
+        {
+            'params': str(request.GET),
+            'time': datetime.now().strftime('%H:%M:%S'),
+            'user': request.GET.get('user', 'Data not found'),
+            'q': request.GET.get('q', 'Data not found')
+        }
+    about = request.GET.get('about', None)
+    if about == 'GET':
+        context['about_get'] = "Method GET haven`t body and means like request on read"
+    elif about == 'POST':
+        context['about_post'] = "Method POST could have body and means like request on create"
+    return HttpResponse(template.render(context, request))
+
+
 def lottery(request):
     template = loader.get_template('lottery.html')
 
