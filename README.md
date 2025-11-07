@@ -23,3 +23,7 @@ https://github.com/user-attachments/assets/ffa87fb8-7869-4e8c-8309-3908f7c996e2
 # dz_6
 https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 
+# dz_7
+<img width="1856" height="1047" alt="image" src="https://github.com/user-attachments/assets/d90737f4-f10c-40f5-9958-914049f5d1ff" />
+<img width="1855" height="1044" alt="image" src="https://github.com/user-attachments/assets/df3b1c2c-0ecd-4a49-9160-5c089b08357c" />
+<img width="1856" height="1046" alt="image" src="https://github.com/user-attachments/assets/8b9094df-4397-42e9-a910-a3640a4fc8f7" />
