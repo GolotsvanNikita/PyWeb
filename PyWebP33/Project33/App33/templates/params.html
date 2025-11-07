@@ -33,7 +33,9 @@ Content-Type: application/json
         <tr><td>href="#home"</td><td>https://localhost/params/query#home (without direction)</td></tr>
     </tbody>
 </table>
-<h3> (<a href="?about=GET">GET</a> {{about_get}}), (<a href="?about=POST">POST</a> {{about_post}})</h3>
+<h3> (<a href="?about=GET" class="btn btn-outline-primary">GET</a>{{about_get}}), (<a href="?about=POST" class="btn btn-outline-primary">POST</a>{{about_post}})</h3>
+<br/>
+<h3> (<a href="?about=PUT" class="btn btn-outline-primary">PUT</a>{{about_put}}), (<a href="?about=PATCH" class="btn btn-outline-primary">PATCH</a>{{about_patch}}), (<a href="?about=DELETE" class="btn btn-outline-primary">DELETE</a>{{about_delete}})</h3>
 {% endblock %}
 
 {% block footer %}

@@ -73,6 +73,13 @@ def params(request):
         context['about_get'] = "Method GET haven`t body and means like request on read"
     elif about == 'POST':
         context['about_post'] = "Method POST could have body and means like request on create"
+    elif about == 'PUT':
+        context['about_put'] = "Method PUT will have body and means like request on full update"
+    elif about == 'PATCH':
+        context['about_patch'] = "Method PATCH will have body and means like request on partial update"
+    elif about == 'DELETE':
+        context['about_delete'] = "Method DELETE may have body and means like request on delete"
+
     return HttpResponse(template.render(context, request))
 
 
