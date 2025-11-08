@@ -1,0 +1,16 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Lottery{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Forms, transfer complex params.</h1>
+<h2 class="display-6">Page for data about correct response</h2>
+
+<p>Form data: {{form.cleaned_data}}</p>
+
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

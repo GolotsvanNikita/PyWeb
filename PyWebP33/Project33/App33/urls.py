@@ -8,6 +8,7 @@ urlpatterns = [
     path('layouting/', views.layouting, name='layouting'),
     path('lottery/', views.lottery, name='lottery'),
     path('params/', views.params, name='params'),
+    path('forms/', views.forms, name='forms'),
     path('statics/', views.statics, name='statics'),
 ]
 

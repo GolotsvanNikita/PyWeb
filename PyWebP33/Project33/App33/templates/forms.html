@@ -1,0 +1,54 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Lottery{% endblock %}
+
+{% block content %}
+<h1>Forms, transfer complex params.</h1>
+
+<p>
+    Django have build-in instruments, that easly building forms and accept data.
+    They are classes, that inheritance at class Form <br/>
+</p>
+<p>After declaration form could imagine in one build-in methods: </p>
+
+<div class="row">
+    <div class="col">
+        <h4>as_div</h4>
+        {{form.as_div}}
+    </div>
+    <div class="col">
+        <h4>as_p</h4>
+        {{form.as_p}}
+    </div>
+    <div class="col">
+        <h4>as_ul</h4>
+        <ul>{{form.as_ul}}</ul>
+    </div>
+    <div class="col">
+        <h4>as_table</h4>
+        <table>{{form.as_table}}</table>
+    </div>
+</div>
+
+<div class="border m-3 p-3">
+    <div class="col 6 offset 3 border p-3">
+    <form method="post">
+        {% csrf_token %}
+        <h3>Complete form:</h3>
+        <table class="table">
+            {{form.as_table}}
+        </table>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    </div>
+
+</div>
+
+{{form.cleaned_data}}
+
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

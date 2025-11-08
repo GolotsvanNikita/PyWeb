@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render
 from django.template import loader
+from .forms import demo_form
 import random
 from datetime import datetime
 
@@ -34,6 +35,27 @@ def clonning(request) :
     }
 
     return HttpResponse( template.render(context, request) )
+
+
+def forms(request):
+    if request.method == 'GET':
+        template = loader.get_template('forms.html')
+        context = \
+        {
+            'form': demo_form.DemoForm()
+        }
+    elif request.method == 'POST':
+        form = demo_form.DemoForm(request.POST)
+        template = loader.get_template('form_ok.html' if form.is_valid() else 'forms.html')
+
+        context = \
+        {
+            'form': form
+        }
+    else:
+        return HttpResponseNotAllowed(['GET', 'POST'])
+
+    return HttpResponse(template.render(context=context, request=request))
 
 
 def layouting(request) :
