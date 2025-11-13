@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import demo_form
 import random
 from datetime import datetime
+from .forms.forms import TaxiCarForm
 
 from Project33.settings import DEBUG
 
@@ -52,6 +53,37 @@ def forms(request):
         {
             'form': form
         }
+    else:
+        return HttpResponseNotAllowed(['GET', 'POST'])
+
+    return HttpResponse(template.render(context=context, request=request))
+
+
+def taxi_car(request):
+    if request.method == 'GET':
+        template = loader.get_template('taxi_car.html')
+        context =\
+        {
+            'form': TaxiCarForm(),
+            'time': datetime.now().strftime('%H:%M:%S')
+        }
+    elif request.method == 'POST':
+        form = TaxiCarForm(request.POST)
+
+        if form.is_valid():
+            template = loader.get_template('taxi_car_ok.html')
+            context =\
+            {
+                'data': form.cleaned_data,
+                'time': datetime.now().strftime('%H:%M:%S')
+            }
+        else:
+            template = loader.get_template('taxi_car.html')
+            context =\
+            {
+                'form': form,
+                'time': datetime.now().strftime('%H:%M:%S')
+            }
     else:
         return HttpResponseNotAllowed(['GET', 'POST'])
 

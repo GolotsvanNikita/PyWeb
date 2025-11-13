@@ -1,0 +1,60 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Car Registered{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-success shadow-lg" role="alert">
+        <h4 class="alert-heading">
+            Car Successfully Registered!
+        </h4>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        Car Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th width="35%">Brand:</th>
+                                <td>{{ data.brand|title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Model:</th>
+                                <td>{{ data.model }}</td>
+                            </tr>
+                            <tr>
+                                <th>License Plate:</th>
+                                <td>{{ data.license_plate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Year:</th>
+                                <td>{{ data.year }}</td>
+                            </tr>
+                            <tr>
+                                <th>Color:</th>
+                                <td>{{ data.color|title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Driver Name:</th>
+                                <td>{{ data.driver_name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

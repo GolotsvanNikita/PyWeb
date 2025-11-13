@@ -10,6 +10,7 @@ urlpatterns = [
     path('params/', views.params, name='params'),
     path('forms/', views.forms, name='forms'),
     path('statics/', views.statics, name='statics'),
+    path('taxi/', views.taxi_car, name='taxi_car'),
 ]
 
 '''

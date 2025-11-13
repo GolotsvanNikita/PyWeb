@@ -1,0 +1,103 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Taxi Car{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="display-4 mb-4">
+        Taxi Car
+    </h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            Car Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{form.brand.id_for_label}}" class="form-label">
+                                    {{ form.brand.label }}
+                                </label>
+                                {{ form.brand }}
+                                {% if form.brand.errors %}
+                                    <div class="text-danger small mt-1">{{form.brand.errors.0}}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="{{form.model.id_for_label}}" class="form-label">
+                                    {{form.model.label}}
+                                </label>
+                                {{form.model}}
+                                {% if form.model.errors %}
+                                    <div class="text-danger small mt-1">{{form.model.errors.0}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="{{form.license_plate.id_for_label}}" class="form-label">
+                                    {{form.license_plate.label}}
+                                </label>
+                                {{form.license_plate}}
+                                {% if form.license_plate.errors %}
+                                    <div class="text-danger small mt-1">{{form.license_plate.errors.0}}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{form.year.id_for_label}}" class="form-label">
+                                    {{form.year.label}}
+                                </label>
+                                {{form.year}}
+                                {% if form.year.errors %}
+                                    <div class="text-danger small mt-1">{{form.year.errors.0}}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.color.id_for_label }}" class="form-label">
+                                    {{form.color.label}}
+                                </label>
+                                {{form.color}}
+                                {% if form.color.errors %}
+                                    <div class="text-danger small mt-1">{{form.color.errors.0}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.driver_name.id_for_label }}" class="form-label">
+                                    {{form.driver_name.label}}
+                                </label>
+                                {{form.driver_name}}
+                                {% if form.driver_name.errors %}
+                                    <div class="text-danger small mt-1">{{form.driver_name.errors.0}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-success btn-lg">Register Car</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}
