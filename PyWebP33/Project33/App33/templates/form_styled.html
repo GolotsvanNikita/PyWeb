@@ -1,0 +1,71 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Form Styled{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Stylization forms and validation message.</h1>
+
+<p>Base possibilities of Python have limited stylization.</p>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.first_name.id_for_label}}"
+                      id="first-name-addon">
+                      <i class="bi bi-person-badge"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.first_name.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.first_name.label}}"
+                      id="{{form.first_name.id_for_label}}"
+                      value="{{form.first_name.value|default_if_none:''}}"
+                      name="{{form.first_name.html_name}}"
+                      aria-label="{{form.first_name.label}}"
+                      aria-describedby="first-name-addon"
+              />
+              {% if 'first_name' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.first_name.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.last_name.id_for_label}}"
+                      id="last-name-addon">
+                      <i class="bi bi-person-circle"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.last_name.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.last_name.label}}"
+                      name="{{form.last_name.html_name}}"
+                      id="{{form.last_name.id_for_label}}"
+                      value="{{form.last_name.value|default_if_none:''}}"
+                      aria-label="{{form.last_name.label}}"
+                      aria-describedby="last-name-addon"
+              />
+              {% if 'last_name' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.last_name.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
+
+{% block footer %}
+    <p>Page was downloaded at {{time}}</p>
+{% endblock %}

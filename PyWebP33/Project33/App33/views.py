@@ -5,6 +5,7 @@ from .forms import demo_form
 import random
 from datetime import datetime
 from .forms.forms import TaxiCarForm
+from .forms.styled_form import StyledForm
 
 from Project33.settings import DEBUG
 
@@ -135,6 +136,24 @@ def params(request):
         context['about_delete'] = "Method DELETE may have body and means like request on delete"
 
     return HttpResponse(template.render(context, request))
+
+
+def form_styled(request):
+    template = loader.get_template('form_styled.html')
+    if request.method == 'GET':
+        context = \
+            {
+                'form': StyledForm()
+            }
+    elif request.method == 'POST':
+        form = StyledForm(request.POST)
+
+        context = \
+            {
+                'form': form
+            }
+
+    return HttpResponse(template.render(context=context, request=request))
 
 
 def lottery(request):
