@@ -34,3 +34,12 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 
 ## Status
 <img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/f78a7664-1bf0-4ad0-b27c-b27979512f6a" />
+
+# dz_9
+## Form errors
+<img width="1296" height="328" alt="image" src="https://github.com/user-attachments/assets/53f0d384-0fe7-4af4-988a-50b067680999" />
+<img width="420" height="90" alt="image" src="https://github.com/user-attachments/assets/75d88573-b8fb-4aa1-826b-1827d29bf784" />
+
+## Correct input
+<img width="1297" height="697" alt="image" src="https://github.com/user-attachments/assets/d71912a2-b668-4add-8edd-b76f65491659" />
+
