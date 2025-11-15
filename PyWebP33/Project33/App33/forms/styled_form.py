@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+import re
 
 class StyledForm(forms.Form):
     first_name = (forms.CharField
@@ -37,3 +39,64 @@ class StyledForm(forms.Form):
             'max_length': "Phone number must have 9 digits (without phone code)"
         }
     ))
+    password = (forms.CharField
+    (
+        widget=forms.PasswordInput(),
+        error_messages =
+        {
+            'required': 'Password input required'            
+        }
+    ))
+
+    repeat = (forms.CharField
+    (
+        widget=forms.PasswordInput(),
+        required=False
+    ))
+
+    is_agree = (forms.BooleanField
+    (
+        help_text='I accept privacy policy',
+        error_messages =
+        {
+            'required': 'You must accept with privacy policy site'
+        }
+    ))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if 'password' in cleaned_data:
+            password = cleaned_data['password']
+            if len(password) < 4:
+                self.add_error(
+                    'password',
+                    ValidationError('Password must have no less 4 symbols')
+                )
+            if not re.search(r'\d', password):
+                self.add_error(
+                    'password',
+                    ValidationError('Password must have such a one digit')
+                )
+            if not re.search(r'\W', password):
+                self.add_error(
+                    'password',
+                    ValidationError('Password must have such a one special symbol')
+                )
+
+        if 'repeat' in cleaned_data:
+            repeat = cleaned_data['repeat']
+            if repeat != cleaned_data.get('password', ''):
+                self.add_error(
+                    'repeat',
+                    ValidationError('Passwords are not equal')
+                )
+
+        if 'first_name' in cleaned_data:
+            first_name = cleaned_data['first_name']
+            if re.search(r'\d', first_name):
+                self.add_error(
+                    'first_name',
+                    ValidationError('In name not allowed digits')
+                )
+        return cleaned_data
+            

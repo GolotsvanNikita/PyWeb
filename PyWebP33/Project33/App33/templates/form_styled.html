@@ -86,8 +86,84 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.password.id_for_label}}"
+                  id="password-addon">
+                  <i class="bi bi-lock"></i>
+          </label>
+          <input
+                  type="password"
+                  class="form-control {{form.password.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.password.label}}"
+                  id="{{form.password.id_for_label}}"
+                  value="{{form.password.value|default_if_none:''}}"
+                  name="{{form.password.html_name}}"
+                  aria-label="{{form.password.label}}"
+                  aria-describedby="password-addon"
+          />
+          {% if 'password' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.password.errors}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.repeat.id_for_label}}"
+                  id="repeat-addon">
+                  <i class="bi bi-unlock"></i>
+          </label>
+          <input
+                  type="password"
+                  class="form-control {{form.repeat.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.repeat.label}}"
+                  id="{{form.repeat.id_for_label}}"
+                  value="{{form.repeat.value|default_if_none:''}}"
+                  name="{{form.repeat.html_name}}"
+                  aria-label="{{form.repeat.label}}"
+                  aria-describedby="repeat-addon"
+          />
+          {% if 'repeat' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.repeat.errors}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-check">
+          <input
+            class="form-check-input {{form.is_agree.errors | yesno:'is-invalid, , '}}"
+            id="{{form.is_agree.id_for_label}}"
+            name="{{form.is_agree.html_name}}"
+            type="checkbox"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            {{form.is_agree.help_text}}
+          </label>
+          {% if 'is_agree' in form.errors %}
+          <div class="invalid-feedback">
+              {{form.is_agree.errors}}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col"><button type="submit" class="btn btn-primary">Submit</button></div>
+    </div>
 </form>
+
+
 
 {% endblock %}
 
