@@ -60,6 +60,31 @@
               {% endif %}
             </div>
         </div>
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.phone_num.id_for_label}}"
+                      id="phone-num-addon">
+                      <i class="bi bi-telephone"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.phone_num.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.phone_num.label}}"
+                      name="{{form.phone_num.html_name}}"
+                      id="{{form.phone_num.id_for_label}}"
+                      value="{{form.phone_num.value|default_if_none:''}}"
+                      aria-label="{{form.phone_num.label}}"
+                      aria-describedby="phone-num-addon"
+              />
+              {% if 'phone_num' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.phone_num.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

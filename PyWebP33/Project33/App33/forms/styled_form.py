@@ -25,3 +25,15 @@ class StyledForm(forms.Form):
             'max_length': "Surname don`t must be upper 64 symbols"
         }
     ))
+    phone_num = (forms.CharField
+    (
+        min_length=13,
+        max_length=13,
+        label="Phone number",
+        error_messages=
+        {
+            'required': 'Phone number input required',
+            'min_length': 'Phone number must have 9 digits (without phone code)',
+            'max_length': "Phone number must have 9 digits (without phone code)"
+        }
+    ))
