@@ -29,14 +29,14 @@ class StyledForm(forms.Form):
     ))
     phone_num = (forms.CharField
     (
-        min_length=13,
-        max_length=13,
+        min_length=10,
+        max_length=10,
         label="Phone number",
         error_messages=
         {
             'required': 'Phone number input required',
-            'min_length': 'Phone number must have 9 digits (without phone code)',
-            'max_length': "Phone number must have 9 digits (without phone code)"
+            'min_length': 'Phone number must have 10 digits',
+            'max_length': "Phone number must have 10 digits"
         }
     ))
     password = (forms.CharField
@@ -97,6 +97,14 @@ class StyledForm(forms.Form):
                 self.add_error(
                     'first_name',
                     ValidationError('In name not allowed digits')
+                )
+
+        if 'phone_num' in cleaned_data:
+            phone_num = cleaned_data['phone_num']
+            if not re.search(r'^0\d', phone_num):
+                self.add_error(
+                    'phone_num',
+                    ValidationError('Phone number must be start at digit 0 and have only digits')
                 )
         return cleaned_data
             
