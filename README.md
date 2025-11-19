@@ -43,3 +43,17 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 ## Correct input
 <img width="1297" height="697" alt="image" src="https://github.com/user-attachments/assets/d71912a2-b668-4add-8edd-b76f65491659" />
 
+# dz_10
+## Errors
+<img width="431" height="104" alt="image" src="https://github.com/user-attachments/assets/b133c77b-1d96-4a26-a222-246d08b595ea" />
+<img width="415" height="97" alt="image" src="https://github.com/user-attachments/assets/20e49825-159c-4cbe-8467-2966641a9d83" />
+<img width="404" height="83" alt="image" src="https://github.com/user-attachments/assets/34307fe5-8bdb-4747-95ec-8f18768040e3" />
+
+## Valid
+<img width="604" height="520" alt="image" src="https://github.com/user-attachments/assets/170a469f-daea-499f-a8de-9d05d96ec190" />
+
+
+
+
+
+
