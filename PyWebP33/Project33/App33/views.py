@@ -6,6 +6,7 @@ import random
 from datetime import datetime
 from .forms.forms import TaxiCarForm
 from .forms.styled_form import StyledForm
+from .forms.delivery_form import DeliveryForm
 
 from Project33.settings import DEBUG
 
@@ -147,6 +148,24 @@ def form_styled(request):
             }
     elif request.method == 'POST':
         form = StyledForm(request.POST)
+
+        context = \
+            {
+                'form': form
+            }
+
+    return HttpResponse(template.render(context=context, request=request))
+
+
+def form_delivery(request):
+    template = loader.get_template('form_delivery.html')
+    if request.method == 'GET':
+        context = \
+            {
+                'form': DeliveryForm()
+            }
+    elif request.method == 'POST':
+        form = DeliveryForm(request.POST)
 
         context = \
             {
