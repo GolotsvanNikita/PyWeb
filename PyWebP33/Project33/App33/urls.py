@@ -11,7 +11,8 @@ urlpatterns = [
     path('forms/', views.forms, name='forms'),
     path('statics/', views.statics, name='statics'),
     path('taxi/', views.taxi_car, name='taxi_car'),
-    path('form-delivery/', views.form_delivery, name='form_delivery'),
+    # path('form-delivery/', views.form_delivery, name='form_delivery'),
+    path('models/', views.models, name='models'),
     path('form-styled/', views.form_styled, name='forms_styled'),
 ]
 

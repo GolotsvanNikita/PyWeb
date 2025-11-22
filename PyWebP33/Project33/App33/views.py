@@ -6,7 +6,7 @@ import random
 from datetime import datetime
 from .forms.forms import TaxiCarForm
 from .forms.styled_form import StyledForm
-from .forms.delivery_form import DeliveryForm
+# from .forms.delivery_form import DeliveryForm
 
 from Project33.settings import DEBUG
 
@@ -157,22 +157,27 @@ def form_styled(request):
     return HttpResponse(template.render(context=context, request=request))
 
 
-def form_delivery(request):
-    template = loader.get_template('form_delivery.html')
-    if request.method == 'GET':
-        context = \
-            {
-                'form': DeliveryForm()
-            }
-    elif request.method == 'POST':
-        form = DeliveryForm(request.POST)
+# def form_delivery(request):
+#     template = loader.get_template('form_delivery.html')
+#     if request.method == 'GET':
+#         context = \
+#             {
+#                 'form': DeliveryForm()
+#             }
+#     elif request.method == 'POST':
+#         form = DeliveryForm(request.POST)
+#
+#         context = \
+#             {
+#                 'form': form
+#             }
+#
+#     return HttpResponse(template.render(context=context, request=request))
 
-        context = \
-            {
-                'form': form
-            }
 
-    return HttpResponse(template.render(context=context, request=request))
+def models(request):
+    template = loader.get_template('models.html')
+    return HttpResponse( template.render(request=request) )
 
 
 def lottery(request):
