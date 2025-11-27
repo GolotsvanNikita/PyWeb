@@ -7,3 +7,7 @@ from .models import *
 admin.site.register(User)
 admin.site.register(Role)
 admin.site.register(Access)
+
+@admin.register(AccessLog)
+class AccessLogAdmin(admin.ModelAdmin):
+    list_display = ('id', 'access_datetime', 'response_code')

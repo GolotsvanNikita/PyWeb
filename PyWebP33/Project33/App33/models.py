@@ -25,3 +25,15 @@ class Access(models.Model):
     login = models.CharField(User, max_length=32)
     salt = models.CharField(User, max_length=32)
     dk = models.CharField(User, max_length=32)
+
+
+class AccessLog(models.Model):
+    access_datetime = models.DateTimeField(auto_now_add=True, verbose_name="Date and Time")
+    response_code = models.PositiveSmallIntegerField(verbose_name="Status Code")
+
+    def __str__(self):
+        return f"{self.access_datetime} - {self.response_code}"
+
+    class Meta:
+        verbose_name = "Access to log"
+        verbose_name_plural = "Access log"
