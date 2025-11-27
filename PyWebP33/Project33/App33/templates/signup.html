@@ -1,0 +1,234 @@
+{% extends "_layout.html" %}
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<h1 class="display-4 mb-4">New user registration.</h1>
+
+{{salt}}
+
+{%if is_ok%}
+<br/>{{form.cleaned_data}}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.login.id_for_label}}"
+                      id="login-addon">
+                      <i class="bi bi-key"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.login.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.login.label}}"
+                      id="{{form.login.id_for_label}}"
+                      value="{{form.login.value|default_if_none:''}}"
+                      name="{{form.login.html_name}}"
+                      aria-label="{{form.login.label}}"
+                      aria-describedby="login-addon"
+              />
+              {% if 'login' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.login.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.first_name.id_for_label}}"
+                      id="first-name-addon">
+                      <i class="bi bi-person-badge"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.first_name.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.first_name.label}}"
+                      id="{{form.first_name.id_for_label}}"
+                      value="{{form.first_name.value|default_if_none:''}}"
+                      name="{{form.first_name.html_name}}"
+                      aria-label="{{form.first_name.label}}"
+                      aria-describedby="first-name-addon"
+              />
+              {% if 'first_name' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.first_name.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.last_name.id_for_label}}"
+                      id="last-name-addon">
+                      <i class="bi bi-person-circle"></i>
+              </label>
+              <input
+                      type="text"
+                      class="form-control {{form.last_name.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.last_name.label}}"
+                      name="{{form.last_name.html_name}}"
+                      id="{{form.last_name.id_for_label}}"
+                      value="{{form.last_name.value|default_if_none:''}}"
+                      aria-label="{{form.last_name.label}}"
+                      aria-describedby="last-name-addon"
+              />
+              {% if 'last_name' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.last_name.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.password.id_for_label}}"
+                  id="password-addon">
+                  <i class="bi bi-lock"></i>
+          </label>
+          <input
+                  type="password"
+                  class="form-control {{form.password.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.password.label}}"
+                  id="{{form.password.id_for_label}}"
+                  value="{{form.password.value|default_if_none:''}}"
+                  name="{{form.password.html_name}}"
+                  aria-label="{{form.password.label}}"
+                  aria-describedby="password-addon"
+          />
+          {% if 'password' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.password.errors}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.repeat.id_for_label}}"
+                  id="repeat-addon">
+                  <i class="bi bi-unlock"></i>
+          </label>
+          <input
+                  type="password"
+                  class="form-control {{form.repeat.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.repeat.label}}"
+                  id="{{form.repeat.id_for_label}}"
+                  value="{{form.repeat.value|default_if_none:''}}"
+                  name="{{form.repeat.html_name}}"
+                  aria-label="{{form.repeat.label}}"
+                  aria-describedby="repeat-addon"
+          />
+          {% if 'repeat' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.repeat.errors}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.phone_num.id_for_label}}"
+                  id="phone-num-addon">
+                  <i class="bi bi-telephone"></i>
+          </label>
+          <input
+                  type="text"
+                  class="form-control {{form.phone_num.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.phone_num.label}}"
+                  name="{{form.phone_num.html_name}}"
+                  id="{{form.phone_num.id_for_label}}"
+                  value="{{form.phone_num.value|default_if_none:''}}"
+                  aria-label="{{form.phone_num.label}}"
+                  aria-describedby="phone-num-addon"
+          />
+          {% if 'phone_num' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.phone_num.errors.as_text}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+       <div class="col">
+        <div class="input-group mb-3">
+          <label
+                  class="input-group-text"
+                  for="{{form.email.id_for_label}}"
+                  id="email-addon">
+                  <i class="bi bi-envelope-at"></i>
+          </label>
+          <input
+                  type="email"
+                  class="form-control {{form.email.errors | yesno:'is-invalid, , '}}"
+                  placeholder="{{form.email.label}}"
+                  name="{{form.email.html_name}}"
+                  id="{{form.email.id_for_label}}"
+                  value="{{form.email.value|default_if_none:''}}"
+                  aria-label="{{form.email.label}}"
+                  aria-describedby="email-addon"
+          />
+          {% if 'email' in form.errors %}
+            <div class="invalid-feedback">
+                {{form.email.errors.as_text}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+              <label
+                      class="input-group-text"
+                      for="{{form.birtdate.id_for_label}}"
+                      id="birtdate-addon">
+                      <i class="bi bi-cake2"></i>
+              </label>
+              <input
+                      type="date"
+                      class="form-control {{form.birtdate.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.birtdate.label}}"
+                      id="{{form.birtdate.id_for_label}}"
+                      value="{{form.birtdate.value|default_if_none:''}}"
+                      name="{{form.birtdate.html_name}}"
+                      aria-label="{{form.birtdate.label}}"
+                      aria-describedby="birtdate-addon"
+              />
+              {% if 'birtdate' in form.errors %}
+                <div class="invalid-feedback">
+                    {{form.birtdate.errors.as_text}}
+                </div>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col"><button type="submit" class="btn btn-primary">Register</button></div>
+</form>
+{% endblock %}
