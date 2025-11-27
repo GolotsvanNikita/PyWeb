@@ -6,7 +6,9 @@ import random
 from datetime import datetime
 from .forms.forms import TaxiCarForm
 from .forms.styled_form import StyledForm
-# from .forms.delivery_form import DeliveryForm
+from .forms.delivery_form import DeliveryForm
+from .forms.signup_form import SignupForm
+from .helper import *
 
 from Project33.settings import DEBUG
 
@@ -157,27 +159,46 @@ def form_styled(request):
     return HttpResponse(template.render(context=context, request=request))
 
 
-# def form_delivery(request):
-#     template = loader.get_template('form_delivery.html')
-#     if request.method == 'GET':
-#         context = \
-#             {
-#                 'form': DeliveryForm()
-#             }
-#     elif request.method == 'POST':
-#         form = DeliveryForm(request.POST)
-#
-#         context = \
-#             {
-#                 'form': form
-#             }
-#
-#     return HttpResponse(template.render(context=context, request=request))
+def form_delivery(request):
+    template = loader.get_template('form_delivery.html')
+    if request.method == 'GET':
+        context = \
+            {
+                'form': DeliveryForm()
+            }
+    elif request.method == 'POST':
+        form = DeliveryForm(request.POST)
+
+        context = \
+            {
+                'form': form
+            }
+
+    return HttpResponse(template.render(context=context, request=request))
 
 
 def models(request):
     template = loader.get_template('models.html')
     return HttpResponse( template.render(request=request) )
+
+
+def signup(request):
+    template = loader.get_template('signup.html')
+    if request.method == 'GET':
+        context = \
+            {
+                'form': SignupForm()
+            }
+    elif request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        context = \
+            {
+                'form': form,
+                'is_ok': form.is_valid()
+            }
+    context['salt'] = salt()
+    return HttpResponse( template.render(request=request, context=context) )
 
 
 def lottery(request):

@@ -13,10 +13,10 @@ class User(models.Model):
 
 class Role(models.Model):
     name = models.CharField(max_length=32)
-    create_level = models.IntegerField
-    read_level = models.IntegerField
-    update_level = models.IntegerField
-    delete_level = models.IntegerField
+    create_level = models.IntegerField(default=0)
+    read_level = models.IntegerField(default=0)
+    update_level = models.IntegerField(default=0)
+    delete_level = models.IntegerField(default=0)
 
 
 class Access(models.Model):
