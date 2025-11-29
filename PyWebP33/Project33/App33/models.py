@@ -18,6 +18,9 @@ class Role(models.Model):
     update_level = models.IntegerField(default=0)
     delete_level = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f"{self.name} ({self.create_level}, {self.read_level}, {self.update_level}, {self.delete_level}))"
+
 
 class Access(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)

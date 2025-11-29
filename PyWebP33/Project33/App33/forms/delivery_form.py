@@ -19,7 +19,7 @@ class DeliveryForm(forms.Form) :
         max_length=64,
         label="Last",
         error_messages={
-            'required': "Необхідно ввести last_name",
+            'required': "Last name input required",
             'min_length': "Last name must be no less 2 digits",
             'max_length': "Last name must not be upper 64 digits"
         })

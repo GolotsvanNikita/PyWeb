@@ -6,11 +6,10 @@
 {% block content %}
 <h1 class="display-4 mb-4">New user registration.</h1>
 
-{{salt}}
+{{user}}
+<br/>
+{{user_access}}
 
-{%if is_ok%}
-<br/>{{form.cleaned_data}}
-{% endif %}
 
 <form method="post">
     {% csrf_token %}

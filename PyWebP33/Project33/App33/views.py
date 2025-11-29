@@ -9,6 +9,7 @@ from .forms.styled_form import StyledForm
 from .forms.delivery_form import DeliveryForm
 from .forms.signup_form import SignupForm
 from .helper import *
+from .models import *
 
 from Project33.settings import DEBUG
 
@@ -191,13 +192,36 @@ def signup(request):
             }
     elif request.method == 'POST':
         form = SignupForm(request.POST)
-
         context = \
-            {
-                'form': form,
-                'is_ok': form.is_valid()
-            }
-    context['salt'] = salt()
+        {
+            'form': form,
+            'is_ok': form.is_valid()
+        }
+        if form.is_valid():
+            form_data = form.cleaned_data
+            _salt = salt()
+            _dk = dk(form_data['password'], _salt)
+
+            user = User()
+            user.first_name = form_data['first_name']
+            user.last_name = form_data['last_name']
+            user.email = form_data['email']
+            user.phone = form_data['phone_num']
+            user.birthdate = form_data['birthdate']
+            user.save()
+
+            user_access = Access()
+            user_access.user = user
+            user_access.role = Role.objects.get(name='Self registered')
+            user_access.login = form_data['login']
+            user_access.salt = salt
+            user_access.dk = dk
+            user_access.save()
+
+            context['user'] = user
+            context['user_access'] = user_access
+    # context['salt'] = salt()
+    # context['dk'] = dk('123', '456')
     return HttpResponse( template.render(request=request, context=context) )
 
 
