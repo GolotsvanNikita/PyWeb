@@ -4,9 +4,26 @@
 
 {% block content %}
 
-<div class ="row_deliveri" >
-
+<div class="row_delivery" >
     <div class ="col col col-xxl-6 offset-xxl-3 col-xl-8 offset-xl-2 col-lg-10 col-md-12 offset-md-0">
+        {% if success %}
+            <div class="mt-5">
+                <h1 class="display-5">ORDER ACCEPTED</h1>
+                <hr>
+                <p class="fs-5">
+                    Recipient: {{ data.first_name }} {{ data.last_name }}
+                </p>
+                <p class="fs-5">
+                    Address:
+                    {{ data.index }}, {{ data.Romania }}, {{ data.Region }}, {{ data.City }},
+                    {{ data.Street_Address }} {{ data.Street_Address_L2 }}
+                </p>
+                <p class="fs-5">
+                    Date, Time: {{ data.Date }} at {{ data.Time }}
+                </p>
+            </div>
+
+        {% else %}
         <form method="post">
             <h1 class="display-5">Delivery Confirmation Form</h1>
             {% csrf_token %}
@@ -53,7 +70,7 @@
 
 
             <div class="row">
-                <H5 class ="fs-5">Address</H2>
+                <h2 class ="fs-5">Address</h2>
                 <div class="row2">
                     <div class="input-group mb-3">
                         <input 
@@ -157,25 +174,28 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="col">
-                    <div class="input-group mb-3">
-                        <input 
-                            type="password" 
-                            class="form-control {{ form.Romania.errors | yesno:'is-invalid, , '}}"
-                            name="{{ form.Romania.html_name }}"
-                            id="{{ form.Romania.id_for_label }}"
-                            value="{{ form.Romania.value|default_if_none:'' }}"
-                            placeholder="{{ form.Romania.label }}" 
-                            aria-label="{{ form.Romania.label }}" 
-                            aria-describedby="Romania-addon"/>
+                    <div class="col">
+                        <div class="mb-3">
+                            <select
+                                class="form-select {{ form.list.errors | yesno:'is-invalid, , '}}"
+                                name="{{ form.list.html_name }}"
+                                id="{{ form.list.id_for_label }}"
+                                aria-label="{{ form.list.label }}">
 
-                        {% if 'Romania' in form.errors %}
-                        <div class="invalid-feedback">
-                            {{ form.Romania.errors }}
+                                {% for value, label in form.list.field.choices %}
+                                    <option value="{{ value }}" {% if form.list.value == value %}selected{% endif %}>
+                                        {{ label }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            {% if 'list' in form.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.list.errors.as_text }}
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
                     </div>
-                </div>
             </div>
 
 
@@ -256,7 +276,6 @@
 
 
         </form>
-    </div>
+    {% endif %}</div>
 </div>
 {% endblock %}
-col col-xxl-6 offset-xxl-3 col-xl-8 offset-xl-2 col-lg-10 col-md-12 offset-md-0

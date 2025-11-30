@@ -164,16 +164,21 @@ def form_delivery(request):
     template = loader.get_template('form_delivery.html')
     if request.method == 'GET':
         context = \
-            {
-                'form': DeliveryForm()
-            }
+        {
+            'form': DeliveryForm()
+        }
     elif request.method == 'POST':
         form = DeliveryForm(request.POST)
-
-        context = \
+        if form.is_valid():
+            return render(request, 'form_delivery.html',
             {
-                'form': form
-            }
+                'success': True,
+                'data': form.cleaned_data
+            })
+        context = \
+        {
+            'form': form
+        }
 
     return HttpResponse(template.render(context=context, request=request))
 
