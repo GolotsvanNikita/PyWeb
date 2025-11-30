@@ -52,6 +52,16 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 ## Valid
 <img width="604" height="520" alt="image" src="https://github.com/user-attachments/assets/170a469f-daea-499f-a8de-9d05d96ec190" />
 
+# dz_11
+## Errors
+<img width="880" height="479" alt="image" src="https://github.com/user-attachments/assets/e0bfdfc4-5e4b-4b75-9c7d-815f75369c07" />
+<img width="920" height="464" alt="image" src="https://github.com/user-attachments/assets/d7fffe16-8282-4057-a3f6-66efa1183f46" />
+
+## Valid
+<img width="856" height="230" alt="image" src="https://github.com/user-attachments/assets/4f9a1c96-0373-4bfe-ab97-1140467c7385" />
+
+
+
 
 
 
