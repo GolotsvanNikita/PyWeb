@@ -8,7 +8,10 @@ class User(models.Model):
     last_name  = models.CharField(max_length=64)   
     email      = models.CharField(max_length=128)
     phone      = models.CharField(max_length=16)    
-    birthdate  = models.DateField(null=True)  
+    birthdate  = models.DateField(null=True)
+
+    def __str__(self):
+        return f"{self.first_name}(id={self.id}){self.last_name}"
 
 
 class Role(models.Model):
@@ -25,9 +28,9 @@ class Role(models.Model):
 class Access(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING)
-    login = models.CharField(User, max_length=32)
-    salt = models.CharField(User, max_length=32)
-    dk = models.CharField(User, max_length=32)
+    login = models.CharField(max_length=32)
+    salt = models.CharField(max_length=32)
+    dk = models.CharField(max_length=32)
 
 
 class AccessLog(models.Model):
