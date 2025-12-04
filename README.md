@@ -60,6 +60,11 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 ## Valid
 <img width="856" height="230" alt="image" src="https://github.com/user-attachments/assets/4f9a1c96-0373-4bfe-ab97-1140467c7385" />
 
+# dz_12
+## A new validation
+<img width="1259" height="574" alt="image" src="https://github.com/user-attachments/assets/1b755b0b-4684-4511-9f82-1f8169095297" />
+
+
 
 
 
