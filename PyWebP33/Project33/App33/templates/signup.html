@@ -205,23 +205,23 @@
             <div class="input-group mb-3">
               <label
                       class="input-group-text"
-                      for="{{form.birtdate.id_for_label}}"
-                      id="birtdate-addon">
+                      for="{{form.birthdate.id_for_label}}"
+                      id="birthdate-addon">
                       <i class="bi bi-cake2"></i>
               </label>
               <input
                       type="date"
-                      class="form-control {{form.birtdate.errors | yesno:'is-invalid, , '}}"
-                      placeholder="{{form.birtdate.label}}"
-                      id="{{form.birtdate.id_for_label}}"
-                      value="{{form.birtdate.value|default_if_none:''}}"
-                      name="{{form.birtdate.html_name}}"
-                      aria-label="{{form.birtdate.label}}"
-                      aria-describedby="birtdate-addon"
+                      class="form-control {{form.birthdate.errors | yesno:'is-invalid, , '}}"
+                      placeholder="{{form.birthdate.label}}"
+                      id="{{form.birthdate.id_for_label}}"
+                      value="{{form.birthdate.value|date:'Y-m-d'|default_if_none:''}}"
+                      name="{{form.birthdate.html_name}}"
+                      aria-label="{{form.birthdate.label}}"
+                      aria-describedby="birthdate-addon"
               />
-              {% if 'birtdate' in form.errors %}
+              {% if 'birthdate' in form.errors %}
                 <div class="invalid-feedback">
-                    {{form.birtdate.errors.as_text}}
+                    {{form.birthdate.errors.as_text}}
                 </div>
               {% endif %}
             </div>
