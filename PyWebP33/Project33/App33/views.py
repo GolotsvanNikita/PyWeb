@@ -1,4 +1,5 @@
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.template import loader
 from .forms import demo_form
@@ -115,6 +116,71 @@ def statics(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+def seed(request) :
+    if request.method == 'PATCH':
+        res = \
+        {
+            "guest": "",
+            "admin-role": "",
+            "admin-user": ""
+        }
+        try:
+            guest = Role.objects.get(name='Self registered')
+        except Role.DoesNotExist:
+            guest = Role()
+            guest.name = 'Self registered'
+            res["guest"] = "created"
+        else:
+            guest.create_level = guest.read_level = guest.update_level = guest.delete_level = 0
+            guest.save()
+            res["guest"] = "updated"
+        try:
+            admin = Role.objects.get(name="Root Administrator")
+        except Role.DoesNotExist:
+            admin = Role()
+            admin.name = 'Root Administrator'
+            res["admin-role"] = "created"
+        else:
+            admin.create_level = admin.read_level = admin.update_level = admin.delete_level = 1
+            admin.save()
+            res["admin-role"] = "updated"
+
+        try:
+            admin = User.objects.get(first_name="Default", last_name='Administrator')
+        except User.DoesNotExist:
+            admin = User()
+            admin.first_name = "Default"
+            admin.last_name = "Administrator"
+            admin.email = 'admin@change.me'
+            admin.phone = '0000000000'
+            admin.save()
+            res["admin-user"] = "created"
+        else:
+            res["admin-user"] = "updated"
+
+        try:
+            admin_access = Access.objects.get(user=admin)
+        except Access.DoesNotExist:
+            admin_access = Access()
+            res["admin-access"] = "created"
+        else:
+            res["admin-access"] = "updated"
+        _salt = salt()
+        _dk = dk('root', _salt)
+        admin_access.user = user
+        admin_access.role = Role.objects.get(name="Root Administrator")
+        admin_access.login = 'admin'
+        admin_access.salt = _salt
+        admin_access.dk = _dk
+        admin_access.save()
+
+        return JsonResponse(res)
+    else:
+        template = loader.get_template('seed.html')
+        return HttpResponse( template.render() )
 
 
 def params(request):

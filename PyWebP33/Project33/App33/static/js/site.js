@@ -1,14 +1,34 @@
 document.addEventListener('DOMContentLoaded', () =>
 {
     console.log('Script works');
+    let btn = document.getElementById("btn-seed");
+    if (btn)
+    {
+        btn.addEventListener('click', btnSeedClick);
+    }
 });
 
-const btn = document.getElementById('click');
-const audio = new Audio(btn.getAttribute('data-sound'));
-audio.preload = 'auto';
+//const btn = document.getElementById('click');
+//const audio = new Audio(btn.getAttribute('data-sound'));
+//audio.preload = 'auto';
+//
+//btn.addEventListener('mouseenter', () =>
+//{
+//    audio.currentTime = 0;
+//    audio.play();
+//});
 
-btn.addEventListener('mouseenter', () =>
+function btnSeedClick()
 {
-    audio.currentTime = 0;
-    audio.play();
-});
+    if (confirm("Its very danger. Confirm?"))
+    {
+        fetch("/seed/",
+        {
+            method: "PATCH"
+        }).then(r => r.json())
+        .then(j =>
+        {
+            console.log(j);
+        });
+    }
+}

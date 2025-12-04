@@ -14,6 +14,7 @@ urlpatterns = [
     path('form-delivery/', views.form_delivery, name='form_delivery'),
     path('models/', views.models, name='models'),
     path('signup/', views.signup, name='signup'),
+    path('seed/', views.seed, name='seed'),
     path('form-styled/', views.form_styled, name='forms_styled'),
 ]
 
