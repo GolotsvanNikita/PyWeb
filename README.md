@@ -64,6 +64,8 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 ## A new validation
 <img width="1269" height="585" alt="image" src="https://github.com/user-attachments/assets/d0b54638-94e4-49de-8178-52e076977c8a" />
 
+# dz_13
+<img width="959" height="275" alt="image" src="https://github.com/user-attachments/assets/c1e36214-56c4-45ce-ae05-59b01650ec74" />
 
 
 
