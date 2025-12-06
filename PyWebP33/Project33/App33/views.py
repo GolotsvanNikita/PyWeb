@@ -119,29 +119,35 @@ def statics(request):
 
 
 @csrf_exempt
-def seed(request) :
+def seed(request):
     if request.method == 'PATCH':
         res = \
-        {
-            "guest": "",
-            "admin-role": "",
-            "admin-user": ""
-        }
+            {
+                "guest": "",
+                "admin-role": "",
+                "admin-user": "",
+                "test-user": "",
+                "test-access": ""
+            }
+
         try:
             guest = Role.objects.get(name='Self registered')
         except Role.DoesNotExist:
             guest = Role()
             guest.name = 'Self registered'
+            guest.save()
             res["guest"] = "created"
         else:
             guest.create_level = guest.read_level = guest.update_level = guest.delete_level = 0
             guest.save()
             res["guest"] = "updated"
+
         try:
             admin = Role.objects.get(name="Root Administrator")
         except Role.DoesNotExist:
             admin = Role()
             admin.name = 'Root Administrator'
+            admin.save()
             res["admin-role"] = "created"
         else:
             admin.create_level = admin.read_level = admin.update_level = admin.delete_level = 1
@@ -149,38 +155,71 @@ def seed(request) :
             res["admin-role"] = "updated"
 
         try:
-            admin = User.objects.get(first_name="Default", last_name='Administrator')
+            admin_user = User.objects.get(first_name="Default",
+                                          last_name='Administrator')
         except User.DoesNotExist:
-            admin = User()
-            admin.first_name = "Default"
-            admin.last_name = "Administrator"
-            admin.email = 'admin@change.me'
-            admin.phone = '0000000000'
-            admin.save()
+            admin_user = User()
+            admin_user.first_name = "Default"
+            admin_user.last_name = "Administrator"
+            admin_user.email = 'admin@change.me'
+            admin_user.phone = '0000000000'
+            admin_user.save()
             res["admin-user"] = "created"
         else:
             res["admin-user"] = "updated"
 
         try:
-            admin_access = Access.objects.get(user=admin)
+            admin_access = Access.objects.get(user=admin_user)
         except Access.DoesNotExist:
             admin_access = Access()
             res["admin-access"] = "created"
         else:
             res["admin-access"] = "updated"
+
         _salt = salt()
         _dk = dk('root', _salt)
-        admin_access.user = user
+        admin_access.user = admin_user
         admin_access.role = Role.objects.get(name="Root Administrator")
         admin_access.login = 'admin'
         admin_access.salt = _salt
         admin_access.dk = _dk
         admin_access.save()
 
+        try:
+            test_user = User.objects.get(email='test_guest@mail.com')
+        except User.DoesNotExist:
+            test_user = User()
+            test_user.first_name = "Test"
+            test_user.last_name = "Guest"
+            test_user.email = 'test_guest@mail.com'
+            test_user.phone = '0000000000'
+            test_user.save()
+            res["test-user"] = "created"
+        else:
+            res["test-user"] = "updated"
+
+        try:
+            test_access = Access.objects.get(user=test_user)
+        except Access.DoesNotExist:
+            test_access = Access()
+            test_access.user = test_user
+            test_access.role = guest
+            res["test-access"] = "created"
+        else:
+            res["test-access"] = "updated"
+
+        t_salt = salt()
+        t_dk = dk('1234', t_salt)
+
+        test_access.login = 'guest_login'
+        test_access.salt = t_salt
+        test_access.dk = t_dk
+        test_access.save()
+
         return JsonResponse(res)
     else:
         template = loader.get_template('seed.html')
-        return HttpResponse( template.render() )
+        return HttpResponse(template.render())
 
 
 def params(request):
