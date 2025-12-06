@@ -67,6 +67,12 @@ https://github.com/user-attachments/assets/242905d0-a271-4065-bac7-5a7f6ff05767
 # dz_13
 <img width="959" height="275" alt="image" src="https://github.com/user-attachments/assets/c1e36214-56c4-45ce-ae05-59b01650ec74" />
 
+# dz_14
+<img width="476" height="250" alt="image" src="https://github.com/user-attachments/assets/5b778081-a6e6-444e-952d-e32c74f461a3" />
+<img width="1006" height="415" alt="image" src="https://github.com/user-attachments/assets/0899b809-5515-4418-be9e-33746e9d277d" />
+<img width="1005" height="350" alt="image" src="https://github.com/user-attachments/assets/ff48ad33-0d91-498d-b11a-a2ba51b53d40" />
+
+
 
 
 
