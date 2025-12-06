@@ -11,6 +11,7 @@ from .forms.delivery_form import DeliveryForm
 from .forms.signup_form import SignupForm
 from .helper import *
 from .models import *
+import base64
 
 from Project33.settings import DEBUG
 
@@ -20,6 +21,33 @@ from Project33.settings import DEBUG
 def hello(request) :
     return HttpResponse("Hello, world!")
 
+def auth(request):
+    authHeader = request.headers.get('Authorization')
+    if not authHeader:
+        return HttpResponse("Missing 'Authorization' header", status=401)
+    authScheme = "Basic "
+    if not authHeader.startswith(authScheme):
+        return HttpResponse("Invalid 'Authorization' scheme", status=401)
+    credentials = authHeader[len(authScheme):]
+    if len(credentials) < 4:
+        return HttpResponse("Credentials too short", status=401)
+    try:
+        user_pass = base64.b64decode(credentials).decode('utf-8')
+    except binascii.Error as err:
+        return HttpResponse("Credentials decode error" + str(err), status=401)
+    parts = user_pass.split(':', maxsplit=1)
+    if len(parts) != 2:
+        return HttpResponse("User-pass decode error", status=401)
+    login, password = parts
+    try:
+        access = Access.objects.get(login=login)
+    except Access.DoesNotExist:
+        return HttpResponse("Authorization rejected", status=401)
+    _salt = access.salt
+    _dk = dk(password, _salt)
+    if _dk != access.dk:
+        return HttpResponse("Authorization rejected.", status=401)
+    return HttpResponse(login + ", " + password, status=200)
 
 def home(request) :
     template = loader.get_template('home.html')

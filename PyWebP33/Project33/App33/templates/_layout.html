@@ -79,6 +79,9 @@
                     </form>
                     <a href="/signup" class="nav-link" title="new user registration"><i class="bi bi-person-add me-3" style="font-size: 2.5rem;"></i></a>
                     <a href="/admin" class="nav-link" title="admin panel"><i class="bi bi-speedometer2 me-3" style="font-size: 2.5rem;"></i></a>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#authModal">
+                       <i class="bi bi-box-arrow-in-right" style="font-size: 1.5rem;"></i>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -92,6 +95,66 @@
         &copy; 2025, IT STEP Academy
         {% block footer %}{% endblock %}
     </footer>
+
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="authModalLabel">Authentication</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <label
+                          class="input-group-text"
+                          for="auth-modal-login"
+                          id="auth-modal-login-addon">
+                          <i class="bi bi-key"></i>
+                  </label>
+                  <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Login"
+                          id="auth-modal-login"
+                          aria-label="Login"
+                          aria-describedby="auth-modal-login-addon"
+                  />
+                  <div class="invalid-feedback">
+                    Incorrect data
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="input-group mb-3">
+                  <label
+                          class="input-group-text"
+                          for="auth-modal-password"
+                          id="auth-modal-password-addon">
+                          <i class="bi bi-lock"></i>
+                  </label>
+                  <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Password"
+                          id="auth-modal-password"
+                          aria-label="Password"
+                          aria-describedby="auth-modal-password-addon"
+                  />
+                  <div class="invalid-feedback">
+                    Incorrect data
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dismiss</button>
+            <button type="button" class="btn btn-primary" id="btn-auth-modal">Sign in</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/site.js' %}"></script>
