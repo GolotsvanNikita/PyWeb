@@ -34,8 +34,18 @@ function btnAuthModalClick()
 {
     const loginInput = document.getElementById("auth-modal-login");
     if (!loginInput) throw "auth-modal-login input not found";
+
     const passwordInput = document.getElementById("auth-modal-password");
     if (!passwordInput) throw "auth-modal-password input not found";
+
+    const errorAlert = document.getElementById('auth-error-alert');
+
+    if (errorAlert)
+    {
+        errorAlert.classList.add('d-none');
+        errorAlert.textContent = '';
+    }
+
     let isOk = true;
     const login = loginInput.value;
     if (!login || login.includes(':'))
@@ -47,6 +57,7 @@ function btnAuthModalClick()
     {
         loginInput.classList.remove("is-invalid")
     }
+
     const password = passwordInput.value;
     if (!password || password.length < 3)
     {
@@ -57,17 +68,43 @@ function btnAuthModalClick()
     {
         passwordInput.classList.remove("is-invalid")
     }
+
     if (isOk)
     {
         let userPass = login + ':' + password;
         let credentials = Base64.encode(userPass)
+
         fetch("/auth/",
         {
             headers:
             {
                 "Authorization": "Basic " + credentials
             }
-        }).then(console.log)
+        })
+        .then(r =>
+        {
+            if (r.ok)
+            {
+                window.location.reload();
+            }
+            else
+            {
+                const alertBox = document.getElementById('auth-error-alert');
+                if (alertBox)
+                {
+                    if (r.status === 401)
+                    {
+                         alertBox.textContent = "Incorrect login or password";
+                    }
+                    else
+                    {
+                         alertBox.textContent = `Server error: ${r.status}`;
+                    }
+
+                    alertBox.classList.remove('d-none');
+                }
+            }
+        });
     }
 }
 

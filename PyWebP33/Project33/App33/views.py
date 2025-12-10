@@ -352,8 +352,8 @@ def signup(request):
             user_access.user = user
             user_access.role = Role.objects.get(name='Self registered')
             user_access.login = form_data['login']
-            user_access.salt = salt
-            user_access.dk = dk
+            user_access.salt = _salt
+            user_access.dk = _dk
             user_access.save()
 
             context['user'] = user
