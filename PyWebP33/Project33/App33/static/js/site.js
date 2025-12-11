@@ -28,7 +28,97 @@ document.addEventListener('DOMContentLoaded', () =>
     {
         btn.addEventListener('click', btnAuthModalClick);
     }
+    btn = document.getElementById("btn-auth-test");
+    if (btn)
+    {
+        btn.addEventListener('click', btnAuthTestClick);
+    }
+    btn = document.getElementById("btn-auth-test-no-header");
+    if (btn)
+    {
+        btn.addEventListener('click', btnAuthNoHeaderClick);
+    }
+    btn = document.getElementById("btn-auth-test-invalid-scheme");
+    if (btn)
+    {
+        btn.addEventListener('click', btnAuthInvalidSchemeClick);
+    }
+    btn = document.getElementById("btn-auth-test-invalid-token");
+    if (btn)
+    {
+        btn.addEventListener('click', btnAuthInvalidTokenClick);
+    }
 });
+
+function btnAuthInvalidTokenClick()
+{
+        fetch("/test/",
+        {
+            headers:
+            {
+                "Authorization": "Bearer 123"
+            }
+        })
+        .then(r =>
+        {
+            r.text().then(alert);
+        });
+}
+
+
+function btnAuthInvalidSchemeClick()
+{
+        fetch("/test/",
+        {
+            headers:
+            {
+                "Authorization": "Basic "
+            }
+        })
+        .then(r =>
+        {
+            r.text().then(alert);
+        });
+}
+
+function btnAuthNoHeaderClick()
+{
+        fetch("/test/",
+        {
+            headers:
+            {
+                "Authorization2": ""
+            }
+        })
+        .then(r =>
+        {
+            r.text().then(alert);
+        });
+}
+
+function btnAuthTestClick()
+{
+    if (typeof window.auth_token == 'undefined')
+    {
+        alert('Authorization requirement');
+    }
+    else
+    {
+        fetch("/test/",
+        {
+            headers:
+            {
+                "Authorization": "Bearer " + window.auth_token
+            }
+        })
+        .then(r =>
+        {
+            r.text().then(alert);
+        });
+    }
+}
+
+
 
 function btnAuthModalClick()
 {
@@ -85,11 +175,18 @@ function btnAuthModalClick()
         {
             if (r.ok)
             {
-                window.location.reload();
+                r.text().then(t =>
+                {
+                    window.auth_token = t;
+                    var myModalEl = document.getElementById('authModal');
+                    var modal = bootstrap.Modal.getInstance(myModalEl);
+                    modal.hide();
+                });
             }
             else
             {
                 const alertBox = document.getElementById('auth-error-alert');
+                r.text().then(alert);
                 if (alertBox)
                 {
                     if (r.status === 401)

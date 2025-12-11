@@ -32,6 +32,9 @@ class Access(models.Model):
     salt = models.CharField(max_length=32)
     dk = models.CharField(max_length=32)
 
+    token = models.CharField(max_length=64, null=True)
+    token_dt = models.DateTimeField(null=True)
+
 
 class AccessLog(models.Model):
     access_datetime = models.DateTimeField(auto_now_add=True, verbose_name="Date and Time")

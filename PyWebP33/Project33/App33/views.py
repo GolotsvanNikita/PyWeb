@@ -4,14 +4,14 @@ from django.shortcuts import render
 from django.template import loader
 from .forms import demo_form
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 from .forms.forms import TaxiCarForm
 from .forms.styled_form import StyledForm
 from .forms.delivery_form import DeliveryForm
 from .forms.signup_form import SignupForm
 from .helper import *
 from .models import *
-import base64
+import base64, uuid
 
 from Project33.settings import DEBUG
 
@@ -47,7 +47,37 @@ def auth(request):
     _dk = dk(password, _salt)
     if _dk != access.dk:
         return HttpResponse("Authorization rejected.", status=401)
-    return HttpResponse(login + ", " + password, status=200)
+    access.token = str(uuid.uuid4())
+    access.token_dt = datetime.now()
+    access.save()
+    return HttpResponse(access.token, status=200)
+
+
+def test(request):
+    auth_header = request.headers.get('Authorization')
+    if not auth_header:
+        return HttpResponse("Missing 'Authorization' header", status=401)
+
+    authScheme = "Bearer "
+    if not auth_header.startswith(authScheme):
+        return HttpResponse("Invalid 'Authorization' scheme", status=401)
+
+    token = len(str(uuid.uuid4()))
+    if token != auth_header:
+        return HttpResponse("Invalid 'Token' length", status=403)
+
+    try:
+        access = Access.objects.get(token=token)
+    except Access.DoesNotExist:
+        return HttpResponse("Authorization rejected", status=401)
+
+    access.token_dt = datetime.now()
+    if time_passed > timedelta(days=1):
+        return HttpResponse("Error time passed", status=418)
+
+    return HttpResponse(f'I working, time: {time_passed.second}', status=200)
+
+
 
 def home(request) :
     template = loader.get_template('home.html')
